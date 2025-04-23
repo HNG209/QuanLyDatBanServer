@@ -82,7 +82,7 @@ public class LoaiMonDAO {
         return prefix + String.format("%02d", newIdNumber); // Combine "XX" and "YY" into the final format
     }
 
-    public Long getMaLoaiFromDatabase(String prefix) {
+    private Long getMaLoaiFromDatabase(String prefix) {
         Session session = HibernateUtils.getFactory().openSession();
         Transaction transaction = null;
         Long maLoaiMon = null;

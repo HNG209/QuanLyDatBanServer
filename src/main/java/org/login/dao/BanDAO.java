@@ -192,7 +192,7 @@ public class BanDAO {
         return isDeleted;
     }
 
-    public Long getMaxIdFromDatabaseForTable(String areaPrefix) {
+    private Long getMaxIdFromDatabaseForTable(String areaPrefix) {
         Session session = HibernateUtils.getFactory().openSession();
         Transaction transaction = null;
         Long maxId = null;
