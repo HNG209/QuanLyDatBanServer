@@ -18,8 +18,8 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
     }
 
     @Override
-    public void addNhanVien(TaiKhoan taiKhoan) {
-        taiKhoanDAO.addNhanVien(taiKhoan);
+    public TaiKhoan addNhanVien(TaiKhoan taiKhoan) {
+        return taiKhoanDAO.addNhanVien(taiKhoan);
     }
 
     @Override

@@ -50,7 +50,7 @@ public class TaiKhoanDAO {
         return taiKhoan;
     }
 
-    public void addNhanVien(TaiKhoan taiKhoan) {
+    public TaiKhoan addNhanVien(TaiKhoan taiKhoan) {
         Session session = HibernateUtils.getFactory().openSession();
         Transaction transaction = null;
 
@@ -58,14 +58,17 @@ public class TaiKhoanDAO {
             transaction = session.beginTransaction();
             session.save(taiKhoan);
             transaction.commit();
+            return taiKhoan;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
+            return null;
         } finally {
             session.close();
         }
+
     }
 
     public TaiKhoan updateTaiKhoan(TaiKhoan taiKhoan) {
