@@ -8,6 +8,8 @@ import org.login.service.CTHDService;
 import org.login.service.HoaDonService;
 import org.login.service.MonAnService;
 
+import java.rmi.RemoteException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CTHDServiceImplTest {
@@ -15,8 +17,11 @@ class CTHDServiceImplTest {
     private final CTHDService cthdService = new CTHDServiceImpl();
     private final MonAnService monAnService = new MonAnServiceImpl();
 
+    CTHDServiceImplTest() throws RemoteException {
+    }
+
     @Test
-    void luuCTHD() {
+    void luuCTHD() throws RemoteException {
         HoaDon hoaDon = hoaDonService.getAllHoaDon().getFirst();
         MonAn monAn = monAnService.getAllMonAn().getFirst();
 
@@ -29,7 +34,7 @@ class CTHDServiceImplTest {
     }
 
     @Test
-    void capNhatCTHD() {
+    void capNhatCTHD() throws RemoteException {
         ChiTietHoaDon chiTietHoaDon = cthdService.getAll().getFirst();
 
         chiTietHoaDon.setSoLuong(100);
