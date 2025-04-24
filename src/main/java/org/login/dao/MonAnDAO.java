@@ -68,7 +68,7 @@ public class MonAnDAO {
     }
 
 
-    public void themMonAn(MonAn monAn) {
+    public MonAn themMonAn(MonAn monAn) {
         Session session = HibernateUtils.getFactory().openSession();
         Transaction transaction = null;
 
@@ -78,34 +78,36 @@ public class MonAnDAO {
             session.save(monAn);
             transaction.commit();
 
+            return monAn;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
+            return null;
         } finally {
             session.close();
         }
     }
 
 
-    public void capNhatMonAn(MonAn monCu, MonAn monAnMoi) {
+    public MonAn capNhatMonAn(MonAn monAnMoi) {
         Session session = HibernateUtils.getFactory().openSession();
         Transaction transaction = null;
 
         try {
             transaction = session.beginTransaction();
 
-            //monAnMoi.setHinhAnh("haha");
             session.update(monAnMoi);
 
             transaction.commit();
-
+            return monAnMoi;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
+            return null;
         } finally {
             session.close();
         }

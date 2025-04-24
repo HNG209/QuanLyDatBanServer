@@ -10,8 +10,8 @@ public class LoaiMonServiceImpl implements LoaiMonService {
     private final LoaiMonDAO loaiMonDAO = new LoaiMonDAO();
 
     @Override
-    public void themLoaiMonAn(LoaiMonAn loaiMonAn) {
-        loaiMonDAO.themLoaiMonAn(loaiMonAn);
+    public LoaiMonAn themLoaiMonAn(LoaiMonAn loaiMonAn) {
+        return loaiMonDAO.themLoaiMonAn(loaiMonAn);
     }
 
     @Override

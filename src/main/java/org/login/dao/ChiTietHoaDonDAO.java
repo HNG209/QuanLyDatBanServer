@@ -13,10 +13,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChiTietHoaDonDAO {
+    public List<ChiTietHoaDon> getAll() {
+        List<ChiTietHoaDon> chiTietHoaDonList = new ArrayList<>(); // Khởi tạo
+
+        Session session = HibernateUtils.getFactory().openSession();
+        try (session) {
+            session.getTransaction().begin();
+            chiTietHoaDonList = session.createQuery("FROM ChiTietHoaDon", ChiTietHoaDon.class).getResultList();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return chiTietHoaDonList;
+    }
+
     public ChiTietHoaDon luuCTHD(ChiTietHoaDon chiTietHoaDon) {
         Session session = HibernateUtils.getFactory().openSession();
         session.getTransaction().begin();
 
+        if (chiTietHoaDon.getMonAn() == null && chiTietHoaDon.getHoaDon() == null)
+            throw new IllegalArgumentException("Mã hoá đơn và mã món ăn phải được xác định");
+
+        chiTietHoaDon.setMaChiTietHoaDon(
+                new CTHDCompositeKey(
+                        chiTietHoaDon.getHoaDon().getMaHoaDon(),
+                        chiTietHoaDon.getMonAn().getMaMonAn()));
         session.save(chiTietHoaDon);
 
         session.getTransaction().commit();
@@ -58,8 +82,6 @@ public class ChiTietHoaDonDAO {
             session.close();
         }
     }
-
-
 
     public void capNhatSoLuong(CTHDCompositeKey key, int soLuong) {
         Session session = HibernateUtils.getFactory().openSession();

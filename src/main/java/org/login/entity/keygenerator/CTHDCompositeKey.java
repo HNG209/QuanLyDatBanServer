@@ -1,39 +1,24 @@
 package org.login.entity.keygenerator;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Setter
+@Getter
 @Embeddable
+@NoArgsConstructor
+@AllArgsConstructor
 public class CTHDCompositeKey implements Serializable {
 
+    // Getters and Setters
     private String maHoaDon;
     private String maMonAn;
-
-    // Default constructor
-    public CTHDCompositeKey() {}
-
-    public CTHDCompositeKey(String maHoaDon, String maMonAn) {
-        this.maHoaDon = maHoaDon;
-        this.maMonAn = maMonAn;
-    }
-
-    // Getters and Setters
-    public String getMaHoaDon() {
-        return maHoaDon;
-    }
-
-    public void setMaHoaDon(String maHoaDon) {
-        this.maHoaDon = maHoaDon;
-    }
-
-    public String getMaMonAn() {
-        return maMonAn;
-    }
-
-    public void setMaMonAn(String maMonAn) {
-        this.maMonAn = maMonAn;
-    }
 
     // Override equals() and hashCode()
     @Override

@@ -7,7 +7,7 @@ public enum TrangThaiMonAn implements Serializable {
     TAM_HET("Tạm hết"),
     NGUNG_BAN("Ngưng bán");
 
-    private String name;
+    private final String name;
 
     private TrangThaiMonAn(String name) {
         this.name = name;

@@ -7,6 +7,7 @@ import org.login.entity.keygenerator.CTHDCompositeKey;
 import java.util.List;
 
 public interface CTHDService {
+    public List<ChiTietHoaDon> getAll();
     public ChiTietHoaDon luuCTHD(ChiTietHoaDon chiTietHoaDon);
     public List<ChiTietHoaDon> fetchChiTietHoaDonNative(String maHoaDon);
     public void deleteChiTietHoaDon(String maHoaDon, String maMonAn);

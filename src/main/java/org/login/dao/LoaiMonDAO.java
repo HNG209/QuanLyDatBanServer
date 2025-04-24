@@ -13,7 +13,7 @@ public class LoaiMonDAO {
     private LoaiMonAn loaiMonAn;
     private List<LoaiMonAn> listLoai;
 
-    public void themLoaiMonAn(LoaiMonAn loaiMonAn) {
+    public LoaiMonAn themLoaiMonAn(LoaiMonAn loaiMonAn) {
         Session session = HibernateUtils.getFactory().openSession();
         Transaction transaction = null;
 
@@ -23,11 +23,13 @@ public class LoaiMonDAO {
             session.save(loaiMonAn);
             transaction.commit();
 
+            return loaiMonAn;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
+            return null;
         } finally {
             session.close();
         }
@@ -76,6 +78,7 @@ public class LoaiMonDAO {
     }
 
     private String generateLoaiMonAn(LoaiMonAn loaiMonAn) {
+        if(loaiMonAn.getTenLoaiMonAn().isEmpty()) throw new IllegalArgumentException("Loại món phải có tên");
         String prefix = generatePrefixFromName(loaiMonAn.getTenLoaiMonAn()); // Generate the "XX" part from the item name
         Long maxId = getMaLoaiFromDatabase(prefix); // Get the maximum "YY" part for the given prefix
         Long newIdNumber = (maxId == null) ? 1 : maxId + 1; // Increment the ID number

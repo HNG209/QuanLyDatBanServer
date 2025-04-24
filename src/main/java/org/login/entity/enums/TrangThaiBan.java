@@ -5,7 +5,7 @@ public enum TrangThaiBan {
     TAM_NGUNG_PHUC_VU("TẠM NGƯNG PHỤC VỤ"),
     BAN_TRONG("BÀN TRỐNG");
 
-    private String name;
+    private final String name;
 
     private TrangThaiBan(String name) {
         this.name = name;

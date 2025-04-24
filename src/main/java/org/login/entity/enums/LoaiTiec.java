@@ -4,7 +4,7 @@ public enum LoaiTiec {
     TIEC_THUONG("Tiệc thường"),
     TIEC_CUOI("Tiệc cưới");
 
-    private String name;
+    private final String name;
 
     LoaiTiec(String s) {
         name = s;

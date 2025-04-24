@@ -145,7 +145,7 @@ public class KhachHangDAO {
         } else {
             counterValue = 1;
             dailyCounter = new DailyCustomerCounter();
-            dailyCounter.setCounterDate(currentYear);
+            dailyCounter.setYear(currentYear);
             dailyCounter.setCounterValue(counterValue);
             session.persist(dailyCounter);
         }

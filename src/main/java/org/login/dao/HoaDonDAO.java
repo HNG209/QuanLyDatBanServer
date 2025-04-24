@@ -389,8 +389,10 @@ public class HoaDonDAO {
         Session session = HibernateUtils.getFactory().openSession();
         session.getTransaction().begin();
 
-        if (hoaDon.getNgayLap() == null)
+        if (hoaDon.getNgayLap() == null){
+            hoaDon.setNgayLap(LocalDate.now());
             hoaDon.setMaHoaDon(generateCustomId());
+        }
         else hoaDon.setMaHoaDon(generateCustomIdFuture(hoaDon.getNgayLap()));
         session.persist(hoaDon);
 

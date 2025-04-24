@@ -1,12 +1,20 @@
 package org.login.entity;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.login.entity.keygenerator.CTHDCompositeKey;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table
 public class ChiTietHoaDon implements Serializable {
 
@@ -30,66 +38,7 @@ public class ChiTietHoaDon implements Serializable {
     @JoinColumn(name = "ma_hoa_don", referencedColumnName = "ma_hoa_don", nullable = false)
     private HoaDon hoaDon;
 
-    public CTHDCompositeKey getMaChiTietHoaDon() {
-        return maChiTietHoaDon;
-    }
-
-    public int getSoLuong() {
-        return soLuong;
-    }
-
-    public MonAn getMonAn() {
-        return monAn;
-    }
-
-    public HoaDon getHoaDon() {
-        return hoaDon;
-    }
-
-    public String getGhiChu() {
-        return ghiChu;
-    }
-
-    public void setGhiChu(String ghiChu) {
-        this.ghiChu = ghiChu;
-    }
-
-    public void setMaChiTietHoaDon(CTHDCompositeKey maChiTietHoaDon) {
-        this.maChiTietHoaDon = maChiTietHoaDon;
-    }
-
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
-    }
-
-    public void setMonAn(MonAn monAn) {
-        this.monAn = monAn;
-    }
-
-    public void setHoaDon(HoaDon hoaDon) {
-        this.hoaDon = hoaDon;
-    }
-
     public double tinhTongCTHD() {
         return monAn.getDonGia() * soLuong;
-    }
-
-    @PrePersist
-    @PreUpdate
-    private void generateCompositeKey() {
-        if (monAn != null && hoaDon != null && this.maChiTietHoaDon == null) {
-            this.maChiTietHoaDon = new CTHDCompositeKey(hoaDon.getMaHoaDon(), monAn.getMaMonAn());
-
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "ChiTietHoaDon{" +
-                "maChiTietHoaDon=" + maChiTietHoaDon +
-                ", soLuong=" + soLuong +
-                ", monAn=" + monAn +
-                ", hoaDon=" + hoaDon +
-                '}';
     }
 }

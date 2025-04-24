@@ -12,6 +12,11 @@ public class CTHDServiceImpl implements CTHDService {
     private final ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
 
     @Override
+    public List<ChiTietHoaDon> getAll() {
+        return chiTietHoaDonDAO.getAll();
+    }
+
+    @Override
     public ChiTietHoaDon luuCTHD(ChiTietHoaDon chiTietHoaDon) {
         return chiTietHoaDonDAO.luuCTHD(chiTietHoaDon);
     }
