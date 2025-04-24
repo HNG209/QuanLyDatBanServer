@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface LichDatService {
-    public void taoLichDat(LichDat lichDat);
-    public void capNhatLichDat(LichDat lichDat);
+    public LichDat taoLichDat(LichDat lichDat);
+    public LichDat capNhatLichDat(LichDat lichDat);
     public List<LichDat> getDSLichDat();
     public List<LichDat> getDSLichDatFrom(LocalDate from, LocalDate to, TrangThaiHoaDon trangThaiHoaDon);
     public List<LichDat> getDSLichDatByStatus(TrangThaiHoaDon trangThaiHoaDon);

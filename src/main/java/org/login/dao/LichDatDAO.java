@@ -13,7 +13,7 @@ import java.util.List;
 
 public class LichDatDAO {
 
-    public void taoLichDat(LichDat lichDat){
+    public LichDat taoLichDat(LichDat lichDat) {
         Session session = HibernateUtils.getFactory().openSession();
         session.getTransaction().begin();
 
@@ -22,9 +22,10 @@ public class LichDatDAO {
 
         session.getTransaction().commit();
         session.close();
+        return lichDat;
     }
 
-    public void capNhatLichDat(LichDat lichDat){
+    public LichDat capNhatLichDat(LichDat lichDat) {
         Session session = HibernateUtils.getFactory().openSession();
         session.getTransaction().begin();
 
@@ -32,6 +33,7 @@ public class LichDatDAO {
 
         session.getTransaction().commit();
         session.close();
+        return lichDat;
     }
 
     public List<LichDat> getDSLichDat() {
@@ -84,7 +86,7 @@ public class LichDatDAO {
         return list;
     }
 
-    public List<LichDat> getDSLichDatBy(String maLichDat, LocalDate ngayNhanBan, TrangThaiHoaDon trangThaiHoaDon, String cccd){
+    public List<LichDat> getDSLichDatBy(String maLichDat, LocalDate ngayNhanBan, TrangThaiHoaDon trangThaiHoaDon, String cccd) {
         Session session = HibernateUtils.getFactory().openSession();
         session.getTransaction().begin();
         String hql = "SELECT ld FROM LichDat ld " +
@@ -107,7 +109,7 @@ public class LichDatDAO {
         return list;
     }
 
-    public List<LichDat> getDSLichDatBy(LocalDateTime thoiGianNhanBan, Ban ban){
+    public List<LichDat> getDSLichDatBy(LocalDateTime thoiGianNhanBan, Ban ban) {
         Session session = HibernateUtils.getFactory().openSession();
         session.getTransaction().begin();
 

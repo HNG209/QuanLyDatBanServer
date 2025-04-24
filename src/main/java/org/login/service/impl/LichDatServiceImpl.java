@@ -14,13 +14,13 @@ public class LichDatServiceImpl implements LichDatService {
     private final LichDatDAO lichDatDAO = new LichDatDAO();
 
     @Override
-    public void taoLichDat(LichDat lichDat) {
-        lichDatDAO.taoLichDat(lichDat);
+    public LichDat taoLichDat(LichDat lichDat) {
+        return lichDatDAO.taoLichDat(lichDat);
     }
 
     @Override
-    public void capNhatLichDat(LichDat lichDat) {
-        lichDatDAO.capNhatLichDat(lichDat);
+    public LichDat capNhatLichDat(LichDat lichDat) {
+      return   lichDatDAO.capNhatLichDat(lichDat);
     }
 
     @Override
