@@ -8,6 +8,7 @@ import org.login.entity.enums.TrangThaiNhanVien;
 import org.login.service.KhachHangService;
 import org.login.service.NhanVienService;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,8 +16,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class NhanVienServiceImplTest {
     private final NhanVienService nhanVienService = new NhanVienServiceImpl();
 
+    NhanVienServiceImplTest() throws RemoteException {
+    }
+
     @Test
-    void addNhanVienTest() {
+    void addNhanVienTest() throws RemoteException {
         NhanVien nhanVien = NhanVien.builder()
                 .tenNhanVien("Crocodilo")
                 .cccd("090912345678")
@@ -34,7 +38,7 @@ class NhanVienServiceImplTest {
     }
 
     @Test
-    void updateNhanVien() {
+    void updateNhanVien() throws RemoteException {
         NhanVien nhanVien = nhanVienService.getAllTaiKhoan().getFirst();
         nhanVien.setTenNhanVien("Nguyễn Văn B");
         nhanVien.setNgaySinh(LocalDate.of(2000, 6, 20));
@@ -48,26 +52,5 @@ class NhanVienServiceImplTest {
 
         NhanVien result = nhanVienService.updateNhanVien(nhanVien);
         assertNotNull(result);
-
-
-//        String maNhanVienCu = "NV0001";
-//
-//        NhanVien nhanVienMoi = new NhanVien();
-//        nhanVienMoi.setTenNhanVien("Nguyễn Văn B");
-//        nhanVienMoi.setNgaySinh(LocalDate.of(2000, 6, 20));
-//        nhanVienMoi.setDiaChi("456 Trần Phú, Q.5");
-//        nhanVienMoi.setGioiTinh(true);
-//        nhanVienMoi.setHinhAnh("avatar_b.jpg");
-//        nhanVienMoi.setSdt("0988765432");
-//        nhanVienMoi.setCccd("123456789012");
-//        nhanVienMoi.setTrangThaiNhanVien(TrangThaiNhanVien.DANG_LAM);
-//        nhanVienMoi.setChucVuNhanVien(ChucVu.NHAN_VIEN);
-//
-//        nhanVienService.updateNhanVien(maNhanVienCu, nhanVienMoi);
-//
-//        NhanVien updatedNhanVien = session.get(NhanVien.class, maNhanVienCu);
-//        assertNotNull(updatedNhanVien);
-//        assertEquals("Nguyễn Văn B", updatedNhanVien.getTenNhanVien());
-//        assertEquals("0988765432", updatedNhanVien.getSdt());
     }
 }

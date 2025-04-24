@@ -2,9 +2,15 @@ package org.login.service;
 
 import org.login.entity.TaiKhoan;
 
-public interface TaiKhoanService {
-    public TaiKhoan getTaiKhoan(String username);
-    public TaiKhoan getTaiKhoanNhanVien(String maNhanVien);
-    public TaiKhoan addNhanVien(TaiKhoan taiKhoan);
-    public TaiKhoan updateTaiKhoan(TaiKhoan taiKhoan);
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface TaiKhoanService extends Remote {
+    public TaiKhoan getTaiKhoan(String username) throws RemoteException;
+
+    public TaiKhoan getTaiKhoanNhanVien(String maNhanVien) throws RemoteException;
+
+    public TaiKhoan addNhanVien(TaiKhoan taiKhoan) throws RemoteException;
+
+    public TaiKhoan updateTaiKhoan(TaiKhoan taiKhoan) throws RemoteException;
 }

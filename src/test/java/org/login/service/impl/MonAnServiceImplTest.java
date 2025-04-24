@@ -6,14 +6,19 @@ import org.login.entity.MonAn;
 import org.login.service.LoaiMonService;
 import org.login.service.MonAnService;
 
+import java.rmi.RemoteException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MonAnServiceImplTest {
     private final MonAnService monAnService = new MonAnServiceImpl();
     private final LoaiMonService loaiMonService = new LoaiMonServiceImpl();
 
+    MonAnServiceImplTest() throws RemoteException {
+    }
+
     @Test
-    void themMonAn() {
+    void themMonAn() throws RemoteException {
         LoaiMonAn loaiMonAn = loaiMonService.getListLoai().getFirst();
 
         assertNotNull(monAnService.themMonAn(
@@ -27,7 +32,7 @@ class MonAnServiceImplTest {
     }
 
     @Test
-    void capNhatMonAn() {
+    void capNhatMonAn() throws RemoteException {
         MonAn monAn = monAnService.getAllMonAn().getFirst();
 
         monAn.setTenMonAn("Bánh mì RAM RAM đã trỗi dậy!");
