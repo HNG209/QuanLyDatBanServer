@@ -49,7 +49,7 @@ public class NhanVienDAO {
     }
 
     // them nhan vien xuong co so du lieu
-    public void addNhanVien(NhanVien nhanVien) {
+    public NhanVien addNhanVien(NhanVien nhanVien) {
         Session session = HibernateUtils.getFactory().openSession();
         Transaction transaction = null;
 
@@ -58,18 +58,21 @@ public class NhanVienDAO {
             nhanVien.setMaNhanVien(this.generateMaNhanVien(nhanVien));
             session.save(nhanVien); // Lưu nhân viên vào cơ sở dữ liệu
             transaction.commit(); // Cam kết giao dịch
+            return nhanVien;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback(); // Hoàn tác giao dịch nếu có lỗi
             }
             e.printStackTrace(); // In ra lỗi
+            return null;
         } finally {
             session.close(); // Đảm bảo đóng session
         }
+
     }
 
 
-    public void updateNhanVien(NhanVien nhanVien) {
+    public NhanVien updateNhanVien(NhanVien nhanVien) {
         Session session = HibernateUtils.getFactory().openSession();
         Transaction transaction = null;
 
@@ -77,11 +80,13 @@ public class NhanVienDAO {
             transaction = session.beginTransaction(); // Bắt đầu giao dịch
             session.update(nhanVien); // Lưu nhân viên vào cơ sở dữ liệu
             transaction.commit(); // Cam kết giao dịch
+            return nhanVien;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback(); // Hoàn tác giao dịch nếu có lỗi
             }
             e.printStackTrace(); // In ra lỗi
+            return null;
         } finally {
             session.close(); // Đảm bảo đóng session
         }

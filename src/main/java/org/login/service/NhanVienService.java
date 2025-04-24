@@ -8,8 +8,8 @@ public interface NhanVienService {
 
     public List<NhanVien> getAllTaiKhoan();
     public NhanVien getNhanVien(String tenString);
-    public void addNhanVien(NhanVien nhanVien);
-    public void updateNhanVien(NhanVien nhanVien);
+    public NhanVien addNhanVien(NhanVien nhanVien);
+    public NhanVien updateNhanVien(NhanVien nhanVien);
     public void updateNhanVien(String maNhanVienCu, NhanVien nhanVienMoi);
     public List<NhanVien> getNhanVienWithTaiKhoan();
 
