@@ -8,6 +8,7 @@ import org.login.entity.enums.LoaiBan;
 import org.login.entity.enums.TrangThaiBan;
 import org.login.service.BanService;
 
+import java.rmi.RemoteException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,8 +16,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class BanServiceImplTest {
     private final BanService banService = new BanServiceImpl();
 
+    BanServiceImplTest() throws RemoteException {
+    }
+
     @Test
-    void themBan() {
+    void themBan() throws RemoteException {
         Ban ban = Ban.builder()
                 .khuVuc(KhuVuc.A)
                 .loaiBan(LoaiBan.BAN_2_NGUOI)
@@ -28,7 +32,7 @@ class BanServiceImplTest {
     }
 
     @Test
-    void capnhatBan() {
+    void capnhatBan() throws RemoteException {
         Optional<Ban> ban = banService.readAll().stream().findFirst();
 
         if(ban.isPresent()) {
@@ -38,9 +42,15 @@ class BanServiceImplTest {
     }
 
     @Test
-    void deleteBan() {
+    void deleteBan() throws RemoteException {
         Optional<Ban> ban = banService.readAll().stream().findFirst();
 
-        ban.ifPresent(value -> assertTrue(banService.deleteBan(value.getMaBan())));
+        ban.ifPresent(value -> {
+            try {
+                assertTrue(banService.deleteBan(value.getMaBan()));
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }

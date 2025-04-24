@@ -5,15 +5,24 @@ import org.login.entity.enums.KhuVuc;
 import org.login.entity.enums.LoaiBan;
 import org.login.entity.enums.TrangThaiBan;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
-public interface BanService {
-    public List<Ban> readAll();
-    public List<Ban> readByStatus(TrangThaiBan trangThaiBan);
-    public Ban updateBan(Ban ban);
-    public List<Ban> getListBanTrong();
-    public List<Ban> getListBanBy(String maBan, TrangThaiBan trangThaiBan, LoaiBan loaiBan, KhuVuc khuVuc);
-    public Ban themBan(Ban ban);
-    public Ban capnhatBan(Ban ban);
-    public boolean deleteBan(String maBan);
+public interface BanService extends Remote {
+    public List<Ban> readAll() throws RemoteException;
+
+    public List<Ban> readByStatus(TrangThaiBan trangThaiBan) throws RemoteException;
+
+    public Ban updateBan(Ban ban) throws RemoteException;
+
+    public List<Ban> getListBanTrong() throws RemoteException;
+
+    public List<Ban> getListBanBy(String maBan, TrangThaiBan trangThaiBan, LoaiBan loaiBan, KhuVuc khuVuc) throws RemoteException;
+
+    public Ban themBan(Ban ban) throws RemoteException;
+
+    public Ban capnhatBan(Ban ban) throws RemoteException;
+
+    public boolean deleteBan(String maBan) throws RemoteException;
 }
