@@ -19,13 +19,13 @@ public class NhanVienServiceImpl implements NhanVienService {
     }
 
     @Override
-    public void addNhanVien(NhanVien nhanVien) {
-        nhanVienDAO.addNhanVien(nhanVien);
+    public NhanVien addNhanVien(NhanVien nhanVien) {
+        return nhanVienDAO.addNhanVien(nhanVien);
     }
 
     @Override
-    public void updateNhanVien(NhanVien nhanVien) {
-        nhanVienDAO.updateNhanVien(nhanVien);
+    public NhanVien updateNhanVien(NhanVien nhanVien) {
+        return nhanVienDAO.updateNhanVien(nhanVien);
     }
 
     @Override
