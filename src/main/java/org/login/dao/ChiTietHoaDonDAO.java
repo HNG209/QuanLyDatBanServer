@@ -85,17 +85,15 @@ public class ChiTietHoaDonDAO {
 
     public void capNhatSoLuong(CTHDCompositeKey key, int soLuong) {
         Session session = HibernateUtils.getFactory().openSession();
-        session.clear();
         Transaction transaction = session.getTransaction();
         try {
             transaction.begin();
 
             ChiTietHoaDon chiTietHoaDon = session.get(ChiTietHoaDon.class, key);
 
-            System.out.println(chiTietHoaDon);
             if(chiTietHoaDon != null) {
                 chiTietHoaDon.setSoLuong(soLuong);
-//                session.update(chiTietHoaDon);
+                session.update(chiTietHoaDon);
             }
 
             session.getTransaction().commit();

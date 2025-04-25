@@ -41,5 +41,5 @@ public interface HoaDonService extends Remote {
 
     public void xoaHoaDon(HoaDon hoaDon) throws RemoteException;
 
-    public double tinhTongTien(HoaDon hoaDon);
+    public double tinhTongTien(HoaDon hoaDon) throws RemoteException;
 }

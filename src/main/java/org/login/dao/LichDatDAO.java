@@ -58,7 +58,7 @@ public class LichDatDAO {
                 "ORDER BY ld.thoiGianNhanBan ASC";
 
         List<LichDat> list = session.createQuery(hql, LichDat.class)
-                .setParameter("trangThai", trangThaiHoaDon == null ? null : trangThaiHoaDon.name())
+                .setParameter("trangThai", trangThaiHoaDon)
                 .setParameter("from", from)
                 .setParameter("to", to)
                 .getResultList();

@@ -18,18 +18,13 @@ import java.util.List;
 @Builder
 @Table
 public class HoaDon implements Serializable {
-    @Getter
     @Id
     @Column(name = "ma_hoa_don")
     private String maHoaDon;
 
-    @Setter
-    @Getter
     @Column(nullable = false, name = "ngay_lap")
     private LocalDate ngayLap;
 
-    @Getter
-    @Setter
     @ManyToOne
     @JoinColumn(name = "ma_ban")
     private Ban ban;
@@ -37,22 +32,18 @@ public class HoaDon implements Serializable {
     @OneToMany(mappedBy = "hoaDon", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ChiTietHoaDon> chiTietHoaDon;
 
-    @Setter
     @ManyToOne
     @JoinColumn(name = "ma_khach_hang")
     private KhachHang khachHang;
 
-    @Setter
     @ManyToOne
     @JoinColumn(name = "ma_nhan_vien")
     private NhanVien nhanVien;
 
-    @Setter
     @Enumerated(EnumType.STRING)
     @Column(name = "trang_thai_hoa_don")
     private TrangThaiHoaDon trangThaiHoaDon = TrangThaiHoaDon.CHUA_THANH_TOAN;
 
-    @Setter
     @Column(name = "phu_thu")
     private double phuThu;
 
@@ -62,12 +53,10 @@ public class HoaDon implements Serializable {
     @Column(name = "chiet_khau")
     private double chietKhau;
 
-    @Transient
-    private final HoaDonDAO hoaDonDAO = new HoaDonDAO();
-
     @PrePersist
     @PreUpdate
     public void trigger() {
+        HoaDonDAO hoaDonDAO = new HoaDonDAO();
         if(trangThaiHoaDon == TrangThaiHoaDon.DA_THANH_TOAN){
             tongTien = hoaDonDAO.tinhTongTien(this) + phuThu - chietKhau;
             if(khachHang != null){

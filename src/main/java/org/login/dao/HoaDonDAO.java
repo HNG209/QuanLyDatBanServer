@@ -417,7 +417,7 @@ public class HoaDonDAO {
         Session session = HibernateUtils.getFactory().openSession();
         session.getTransaction().begin();
 
-        session.update(hoaDon);
+        session.merge(hoaDon);
 
         session.getTransaction().commit();
         session.close();
