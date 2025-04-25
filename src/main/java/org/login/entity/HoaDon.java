@@ -2,6 +2,7 @@ package org.login.entity;
 
 import lombok.*;
 import org.login.dao.ChiTietHoaDonDAO;
+import org.login.dao.HoaDonDAO;
 import org.login.dao.KhachHangDAO;
 import org.login.entity.enums.TrangThaiHoaDon;
 
@@ -62,13 +63,13 @@ public class HoaDon implements Serializable {
     private double chietKhau;
 
     @Transient
-    private ChiTietHoaDonDAO chiTietHoaDonDAO;
+    private final HoaDonDAO hoaDonDAO = new HoaDonDAO();
 
     @PrePersist
     @PreUpdate
     public void trigger() {
         if(trangThaiHoaDon == TrangThaiHoaDon.DA_THANH_TOAN){
-            tongTien = tinhTongTien() + phuThu - chietKhau;
+            tongTien = hoaDonDAO.tinhTongTien(this) + phuThu - chietKhau;
             if(khachHang != null){
                 khachHang.setDiemTichLuy(khachHang.getDiemTichLuy() + (int)(tongTien * 1 / 1000.0));
 
@@ -78,9 +79,10 @@ public class HoaDon implements Serializable {
         }
     }
 
-    public double tinhTongTien() {
-        chiTietHoaDonDAO = new ChiTietHoaDonDAO();
-        tongTien = chiTietHoaDonDAO.fetchChiTietHoaDonNative(maHoaDon).stream().mapToDouble(ChiTietHoaDon::tinhTongCTHD).sum();
-        return tongTien;
-    }
+//    public double tinhTongTien() {
+////        chiTietHoaDonDAO = new ChiTietHoaDonDAO();
+////        tongTien = chiTietHoaDonDAO.fetchChiTietHoaDonNative(maHoaDon).stream().mapToDouble(ChiTietHoaDon::tinhTongCTHD).sum();
+////        return tongTien;
+//        return 0;
+//    }
 }

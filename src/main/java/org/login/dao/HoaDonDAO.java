@@ -14,6 +14,7 @@ import java.util.List;
 
 public class HoaDonDAO {
 
+    private final ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
     private List<Object[]> dsHoaDon;
 
     public Object[] layDoanhThuVaSoHoaDon(String maNhanVien, LocalDate ngay) {
@@ -596,5 +597,9 @@ public class HoaDonDAO {
         session.getTransaction().commit();
         session.close();
         return counterValue;
+    }
+
+    public double tinhTongTien(HoaDon hoaDon) {
+        return chiTietHoaDonDAO.fetchChiTietHoaDonNative(hoaDon.getMaHoaDon()).stream().mapToDouble(ChiTietHoaDon::tinhTongCTHD).sum();
     }
 }

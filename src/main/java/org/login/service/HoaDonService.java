@@ -40,4 +40,6 @@ public interface HoaDonService extends Remote {
     public List<Object[]> laySoHoaDonTheoTrangThaiVaNgay(String maNV, LocalDate ngay) throws RemoteException;
 
     public void xoaHoaDon(HoaDon hoaDon) throws RemoteException;
+
+    public double tinhTongTien(HoaDon hoaDon);
 }

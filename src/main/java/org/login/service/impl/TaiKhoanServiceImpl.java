@@ -20,7 +20,7 @@ public class TaiKhoanServiceImpl extends UnicastRemoteObject implements TaiKhoan
 
     @Override
     public TaiKhoan getTaiKhoanNhanVien(String maNhanVien) throws RemoteException {
-        return taiKhoanDAO.getTaiKhoan(maNhanVien);
+        return taiKhoanDAO.getTaiKhoanNhanVien(maNhanVien);
     }
 
     @Override

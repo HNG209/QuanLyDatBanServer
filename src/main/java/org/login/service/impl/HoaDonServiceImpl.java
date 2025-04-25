@@ -96,4 +96,9 @@ public class HoaDonServiceImpl extends UnicastRemoteObject implements HoaDonServ
     public void xoaHoaDon(HoaDon hoaDon) throws RemoteException {
         hoaDonDAO.xoaHoaDon(hoaDon);
     }
+
+    @Override
+    public double tinhTongTien(HoaDon hoaDon) {
+        return hoaDonDAO.tinhTongTien(hoaDon);
+    }
 }

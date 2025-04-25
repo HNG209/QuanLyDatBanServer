@@ -9,6 +9,7 @@ import org.login.entity.enums.LoaiBan;
 import org.login.entity.enums.TrangThaiBan;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
@@ -16,7 +17,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Table
-public class Ban {
+public class Ban implements Serializable {
     @Id
     @Column(name = "ma_ban")
     private String maBan;
