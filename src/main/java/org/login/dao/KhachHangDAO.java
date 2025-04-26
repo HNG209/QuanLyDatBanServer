@@ -26,8 +26,8 @@ public class KhachHangDAO {
             query.multiselect(
                     rootKH.get("maKhachHang"),
                     rootKH.get("tenKhachHang"),
-                    rootKH.get("sdt"),
                     rootKH.get("cccd"),
+                    rootKH.get("sdt"),
                     rootKH.get("diaChi"),
                     rootKH.get("email"),
                     rootKH.get("diemTichLuy")
