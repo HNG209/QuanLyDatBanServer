@@ -25,7 +25,7 @@ public class RMIServer {
         NhanVienService nhanVienService = new NhanVienServiceImpl();
         TaiKhoanService taiKhoanService = new TaiKhoanServiceImpl();
 
-        String host = System.getenv("HOST_NAME");
+        String host = "DESKTOP-AU6OVKD";
 
         context.bind("rmi://"+ host + ":2909/banService", banService);
         context.bind("rmi://"+ host + ":2909/cthdService", cthdService);
